@@ -1,22 +1,11 @@
-import useData from "../../hook/useData";
+import { fetchProfileData } from "../fakeApi";
+
+const resource = fetchProfileData();
 
 const User = () => {
-  const { data, isLoading } = useData("seows2");
+  const user = resource.user.read();
 
-  if (isLoading) {
-    return <div>멋진 로딩 화면...</div>;
-  }
-
-  return (
-    <>
-      <img
-        src={data.avatar_url}
-        alt="아바타 이미지"
-        style={{ width: "100px" }}
-      />
-      <span>{data.name}</span>
-    </>
-  );
+  return <h1>{user.name}</h1>;
 };
 
 export default User;
